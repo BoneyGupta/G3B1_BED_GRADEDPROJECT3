@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+
+<Title>Ticket Tracker Application</Title>
+<style type=text/css>
+body {
+	height: 125vh;
+	margin-top: 80px;
+	padding: 30px;
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+header {
+	background-color: blue;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	box-shadow: 0 0 0px 0 black;
+}
+
+header * {
+	display: inline;
+}
+
+header li {
+	margin: 20px;
+}
+
+header li a {
+	color: white;
+	text-decoration: none;
+}
+
+header nav h1 {
+	color: white;
+	margin: 20px;
+}
+
+.form-inline input {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.search-btn input {
+	background-color: #FF0000;
+	color: #FFFFFF;
+	font-size: 16px;
+	padding: 8px 16px;
+}
+.button-group {
+  display: flex;
+}
+
+.col-small {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+</style>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<h1>Ticket Tracker Application</h1>
+			<ul>
+				<li><a href="@{/tickets}"> Tickets </a></li>
+				<li><a href="@{/tickets/new}"> New Ticket </a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="container">
+		<h2>List of Tickets</h2>
+		<form action="/admin/search-ticket" th:action="@{/admin/view-page}"
+			method="get">
+
+			<div class="form-inline">
+				<input type="text" th:field="*{}"
+					class="form-control mb-2 col-4" placeholder="Type query here...">
+				<input class="search-btn" type="submit" value="Search"
+					class="btn btn--view" />
+			</div>
+		</form>
+
+	</div>
+
+	<div class="container">
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>#</th>
+					<th>Ticket Title</th>
+					<th>Ticket Short Description</th>
+					<th>Ticket Created On</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="tkt : ${tickets}">
+
+					<td th:text="${tkt.id}" />
+					<td th:text="${tkt.ticketTitle}" />
+					<td th:text="${tkt.ticketShortDesc}" />
+					<td th:text="${tkt.ticketCreatedOn}" />
+
+					<td>
+						<div class="row">
+
+							<div class="col-small">
+								<!-- Add "update" button/link -->
+								<a th:href="@{/tickets/edit/{id}(id = ${tkt.id})}"
+									class="btn btn-primary btn-sm mb-3"> Edit </a>
+							</div>
+
+							<div class="col-small">
+								<!-- Add "delete" button/link -->
+								<a th:href="@{/tickets/delete/{id}(id = ${tkt.id})}"
+									class="btn btn-danger btn-sm"
+									onclick="if (!(confirm('Are you sure you want to delete this ticket?'))) return false">
+									Delete </a>
+							</div>
+							<div class="col-small">
+								<!-- Add "update" button/link -->
+								<a th:href="@{/tickets/view/{id}(id = ${tkt.id})}"
+									class="btn btn-primary btn-sm mb-3"> View </a>
+							</div>
+						</div>
+					</td>
+
+
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</body>
+</html>
+
