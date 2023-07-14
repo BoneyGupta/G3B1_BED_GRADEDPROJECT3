@@ -18,7 +18,7 @@ public class MyServiceImpl implements MyService {
 
 	@Override
 	public List<Ticket> getAllTickets(String query) {
-		if(query!=null) {			
+		if (query != null) {
 			List<Ticket> ls = repo.findAll();
 			List<Ticket> temp = new ArrayList<>();
 			for (Ticket tktemp : ls) {
@@ -27,12 +27,13 @@ public class MyServiceImpl implements MyService {
 					temp.add(tktemp);
 			}
 			return temp;
-		}			
+		}
 		return repo.findAll();
 	}
 
 	@Override
 	public void saveTicket(Ticket tkt) {
+		System.out.println(tkt.getTicketContent());
 		repo.save(tkt);
 	}
 

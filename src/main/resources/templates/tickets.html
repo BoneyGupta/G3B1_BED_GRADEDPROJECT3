@@ -17,15 +17,14 @@
 <style type=text/css>
 body {
 	height: 100%;
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 	margin-top: 80px;
 	padding: 30px;
 	background-size: cover;
 	font-family: sans-serif;
-	
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 header {
@@ -83,36 +82,29 @@ header nav h1 {
 	background-color: blue;
 	border-color: blue;
 }
+
 footer {
-	background-color: #D3D3D3;
 	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0px;
-	height: 50px;
-	display: flex;
-	align-items: center;
+	bottom: 0;
+	width: 100%;
+	background-color: #f2f2f2;
+	padding: 10px;
 	text-align: center;
-	vertical-align: middle;
-	box-shadow: 0 0 0px 0 black;
 }
-html{
-  height: 100%;
+
+html {
+	height: 100%;
 }
+
 main {
-  flex-grow: 1;
+	flex-grow: 1;
 }
 
 footer {
-  background-color: #f2f2f2;
-  padding: 10px;
-  text-align: center;
+	background-color: #f2f2f2;
+	padding: 10px;
+	text-align: center;
 }
-
-
-
-
-
 </style>
 </head>
 
@@ -130,10 +122,10 @@ footer {
 	</header>
 	<div class="container">
 		<h2>List of Tickets</h2>
-		<form th:action="@{/tickets/}" >
+		<form th:action="@{/tickets/}">
 			<input type="text" name="query" id="query" size="50"
-				th:value="${query}" placeholder="Type query here..." required /><input type="submit"
-				value="Search" /> 
+				th:value="${query}" placeholder="Type query here..." required /><input
+				class="btn btn-primary btn-sm mb-1" type="submit" value="Search" />
 		</form>
 
 	</div>
@@ -177,7 +169,7 @@ footer {
 							<div class="col-small">
 								<!-- Add "update" button/link -->
 								<a th:href="@{/tickets/view/{id}(id = ${tkt.id})}"
-									class="btn btn-primary btn-sm mb-3"> View </a>
+									class="btn btn-info btn-sm mb-3"> View </a>
 							</div>
 						</div>
 					</td>
@@ -188,7 +180,7 @@ footer {
 		</table>
 
 	</div>
-
+	<footer> Copyright @ 2023 GreatLearning ||All rights reserved||</footer>
 </body>
 
 </html>

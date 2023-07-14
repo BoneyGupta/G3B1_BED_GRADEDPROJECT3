@@ -28,7 +28,7 @@ public class Ticket {
 	private String ticketShortDesc;
 	@Column(name = "tkt_created_on")
 	private String ticketCreatedOn;
-	@Column(name="tkt_content")
+	@Column(name = "tkt_content")
 	private String ticketContent;
 
 }

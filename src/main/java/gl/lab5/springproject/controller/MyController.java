@@ -21,34 +21,38 @@ import gl.lab5.springproject.service.MyService;
 @RequestMapping("/tickets")
 public class MyController {
 
+	public String date;
+
 	@Autowired
 	public MyService svc;
 
 	@GetMapping("/")
-	public String getAllTickets(Model model,@Param("query") String query) {
+	public String getAllTickets(Model model, @Param("query") String query) {
 		System.out.println(query);
-		List<Ticket> ticket= svc.getAllTickets(query);
+		List<Ticket> ticket = svc.getAllTickets(query);
 		model.addAttribute("tickets", ticket);
-		model.addAttribute("query",query);
+		model.addAttribute("query", query);
 		return "tickets";
 	}
-	
+
 	@GetMapping("/test")
 	public String testHTML(Model model) {
 		return "test";
 	}
-	
+
 //	Edit Tickets page
 	@GetMapping("/edit/{id}")
 	public String editTicket(@PathVariable(name = "id") Integer id, Model model) {
 		model.addAttribute("ticket", svc.findByNum(id));
+		date = svc.findByNum(id).getTicketCreatedOn();
 		return "edit_tkt";
 	}
 
 	@PostMapping("/save/{id}")
-	public String updateTicket(@PathVariable(name = "id") Integer id,
-			@ModelAttribute(name = "ticket") Ticket tkt) {
+	public String updateTicket(@PathVariable(name = "id") Integer id, @ModelAttribute(name = "ticket") Ticket tkt) {
 		tkt.setId(id);
+		tkt.setTicketCreatedOn(date);
+		date = "";
 		svc.saveTicket(tkt);
 		return "redirect:/tickets/";
 	}
@@ -64,25 +68,19 @@ public class MyController {
 	@GetMapping("/new")
 	public String addTicket(Model model) {
 		model.addAttribute("ticket", new Ticket());
-		return ("create_tkt");
+		return "create_tkt";
 	}
 
 	@PostMapping("/save")
 	public String saveNewTicket(@ModelAttribute(name = "ticket") Ticket tkt) {
 
 		LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		tkt.setTicketCreatedOn(currentDate.format(formatter));
+		tkt.setTicketContent(tkt.getTicketContent().replaceAll("<p>|</p>", ""));
 		svc.saveTicket(tkt);
 		return "redirect:/tickets/";
 	}
-
-////	Search Ticket
-//	@GetMapping("/search")
-//	public String searchTicket(@RequestParam("query") String query, Model model) {
-//		model.addAttribute("tickets", svc.searchTickets(query));
-//		return "tickets";
-//	}
 
 // 	Delete Ticket
 	@GetMapping("/delete/{id}")
@@ -91,9 +89,4 @@ public class MyController {
 		return "redirect:/tickets/";
 	}
 
-//	Redirect to Tickets
-	@GetMapping("/ticket-redirect")
-	public String redirectToTickets() {
-		return "redirect:/tickets";
-	}
 }
