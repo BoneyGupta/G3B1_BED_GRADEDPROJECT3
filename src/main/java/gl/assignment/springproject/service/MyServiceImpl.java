@@ -1,4 +1,4 @@
-package gl.lab5.springproject.service;
+package gl.assignment.springproject.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gl.lab5.springproject.dao.MyRepository;
-import gl.lab5.springproject.model.Ticket;
+import gl.assignment.springproject.dao.MyRepository;
+import gl.assignment.springproject.model.Ticket;
 
 @Service
 public class MyServiceImpl implements MyService {

@@ -1,4 +1,4 @@
-package gl.lab5.springproject.controller;
+package gl.assignment.springproject.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import gl.lab5.springproject.model.Ticket;
-import gl.lab5.springproject.service.MyService;
+import gl.assignment.springproject.model.Ticket;
+import gl.assignment.springproject.service.MyService;
 
 @Controller
 @RequestMapping("/tickets")
