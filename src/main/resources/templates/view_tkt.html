@@ -94,12 +94,13 @@ h3 {
 	text-align: center;
 	background-color: #D3D3D3;
 }
+
 .container {
-    width: 60%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+	width: 60%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
 }
 </style>
 </head>
@@ -115,28 +116,34 @@ h3 {
 			</ul>
 		</nav>
 	</header>
-	<div class="container">
-
-		<h3 class="create-new-ticket">Create New Ticket</h3>
-		<hr>
-
-		<form action="#" th:action="@{/tickets/save}" th:object="${ticket}"
-			method="POST">
-
-			<label>Ticket Title</label> <input type="text"
-				th:field="*{ticketTitle}" class="form-control mb-4 col-20"
-				placeholder="Enter Ticket Title"> <label>Ticket
-				Short Description</label> <input type="text" th:field="*{ticketShortDesc}"
-				class="form-control mb-4 col-15"
-				placeholder="Enter Ticket Description">
-
-			<button type="submit" class="btn btn-info col-2">Save</button>
-
-		</form>
-
-		<hr>
-
+	<div class="container p-4">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<h1 class="text-center">Ticket Details</h1>
+				<div class="card">
+					<div class="card-body">
+						<form th:object="${ticket}">
+							<div class="form-group">
+								<label>Title: </label><span
+									th:text="${ticket.ticketTitle}"></span>
+							</div>
+							<div class="form-group">
+								<label>Description: </label><span
+									th:text="${ticket.ticketShortDesc}"></span>
+							</div>
+							<div class="form-group">
+								<label>Created On: </label><span
+									th:text="${ticket.ticketCreatedOn}"></span>
+							</div>
+							<div class="form-group">
+								<label>Content: </label><span
+									th:text="${ticket.ticketContent}"></span>
+							</div>							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
 </body>
 </html>

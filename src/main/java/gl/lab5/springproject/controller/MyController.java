@@ -1,6 +1,11 @@
 package gl.lab5.springproject.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +25,11 @@ public class MyController {
 	public MyService svc;
 
 	@GetMapping("/")
-	public String getAllTickets(Model model) {
-		model.addAttribute("tickets", svc.getAllTickets());
+	public String getAllTickets(Model model,@Param("query") String query) {
+		System.out.println(query);
+		List<Ticket> ticket= svc.getAllTickets(query);
+		model.addAttribute("tickets", ticket);
+		model.addAttribute("query",query);
 		return "tickets";
 	}
 	
@@ -48,38 +56,44 @@ public class MyController {
 //	View Tickets Page
 	@GetMapping("/view/{id}")
 	public String viewTicket(Model model, @PathVariable(name = "id") Integer id) {
-
 		model.addAttribute("ticket", svc.findByNum(id));
-		return "/view/{id}";
+		return "view_tkt";
 	}
 
 //	New Ticket
 	@GetMapping("/new")
 	public String addTicket(Model model) {
 		model.addAttribute("ticket", new Ticket());
-		return ("edit_tkt");
+		return ("create_tkt");
 	}
 
 	@PostMapping("/save")
 	public String saveNewTicket(@ModelAttribute(name = "ticket") Ticket tkt) {
 
+		LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		tkt.setTicketCreatedOn(currentDate.format(formatter));
 		svc.saveTicket(tkt);
 		return "redirect:/tickets/";
 	}
 
-//	Search Ticket
-	@GetMapping("/search/{query}")
-	public String searchTicket(@PathVariable(name = "query") String query, Model model) {
-		model.addAttribute("tickets", svc.searchTickets(query));
-		return "tickets";
-	}
+////	Search Ticket
+//	@GetMapping("/search")
+//	public String searchTicket(@RequestParam("query") String query, Model model) {
+//		model.addAttribute("tickets", svc.searchTickets(query));
+//		return "tickets";
+//	}
 
 // 	Delete Ticket
 	@GetMapping("/delete/{id}")
 	public String deleteTicket(@PathVariable(name = "id") Integer id) {
 		svc.deleteTicket(id);
-		return "redirect:/tickets";
+		return "redirect:/tickets/";
 	}
 
-	
+//	Redirect to Tickets
+	@GetMapping("/ticket-redirect")
+	public String redirectToTickets() {
+		return "redirect:/tickets";
+	}
 }

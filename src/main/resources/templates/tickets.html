@@ -16,11 +16,16 @@
 <Title>Ticket Tracker Application</Title>
 <style type=text/css>
 body {
-	height: 125vh;
+	height: 100%;
+	margin:0;
+	padding:0;
 	margin-top: 80px;
 	padding: 30px;
 	background-size: cover;
 	font-family: sans-serif;
+	
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -29,7 +34,7 @@ header {
 	left: 0;
 	right: 0;
 	top: 0px;
-	height: 50px;
+	height: 60px;
 	display: flex;
 	align-items: center;
 	box-shadow: 0 0 0px 0 black;
@@ -58,20 +63,55 @@ header nav h1 {
 	vertical-align: middle;
 }
 
-.search-btn input {
-	background-color: #FF0000;
+.btn--view input {
 	color: #FFFFFF;
 	font-size: 16px;
 	padding: 8px 16px;
 }
+
 .button-group {
-  display: flex;
+	display: flex;
 }
 
 .col-small {
-  margin-left: 5px;
-  margin-right: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
+
+.btn-primary {
+	color: #fff;
+	background-color: blue;
+	border-color: blue;
+}
+footer {
+	background-color: #D3D3D3;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	vertical-align: middle;
+	box-shadow: 0 0 0px 0 black;
+}
+html{
+  height: 100%;
+}
+main {
+  flex-grow: 1;
+}
+
+footer {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+}
+
+
+
+
 
 </style>
 </head>
@@ -81,22 +121,19 @@ header nav h1 {
 		<nav>
 			<h1>Ticket Tracker Application</h1>
 			<ul>
-				<li><a href="@{/tickets}"> Tickets </a></li>
-				<li><a href="@{/tickets/new}"> New Ticket </a></li>
+				<li><a href="http://localhost:8080/tickets/"
+					class="btn btn-primary btn-sm mb-2">Tickets</a></li>
+				<li><a href="http://localhost:8080/tickets/new"
+					class="btn btn-primary btn-sm mb-2"> New Ticket </a></li>
 			</ul>
 		</nav>
 	</header>
 	<div class="container">
 		<h2>List of Tickets</h2>
-		<form action="/admin/search-ticket" th:action="@{/admin/view-page}"
-			method="get">
-
-			<div class="form-inline">
-				<input type="text" th:field="*{}"
-					class="form-control mb-2 col-4" placeholder="Type query here...">
-				<input class="search-btn" type="submit" value="Search"
-					class="btn btn--view" />
-			</div>
+		<form th:action="@{/tickets/}" >
+			<input type="text" name="query" id="query" size="50"
+				th:value="${query}" placeholder="Type query here..." required /><input type="submit"
+				value="Search" /> 
 		</form>
 
 	</div>
@@ -153,5 +190,6 @@ header nav h1 {
 	</div>
 
 </body>
+
 </html>
 

@@ -1,10 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+
+<title>Ticket Tracker Application</title>
+<!--</head>
+<body>
+<h1>New HTML for Create Ticket</h1>
+</body>
+</html>
+-->
+<style type=text/css>
+body {
+	height: 125vh;
+	margin-top: 80px;
+	padding: 30px;
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+header {
+	background-color: blue;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	box-shadow: 0 0 0px 0 black;
+}
+
+header * {
+	display: inline;
+}
+
+header li {
+	margin: 20px;
+}
+
+header li a {
+	color: white;
+	text-decoration: none;
+}
+
+header nav h1 {
+	color: white;
+	margin: 20px;
+}
+
+.form-inline input {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.search-btn input {
+	background-color: blue;
+	color: #FFFFFF;
+	font-size: 16px;
+	padding: 8px 16px;
+}
+
+.button-group {
+	display: flex;
+}
+
+.col-small {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: blue;
+	border-color: blue;
+}
+
+.create-new-ticket h3 {
+	text-align: center;
+}
+
+h3 {
+	margin-top: 0;
+	margin-bottom: .5rem;
+	text-align: center;
+	background-color: #D3D3D3;
+}
+
+.container {
+	width: 60%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+</style>
 </head>
 <body>
+	<header>
+		<nav>
+			<h1>Ticket Tracker Application</h1>
+			<ul>
+				<li><a href="http://localhost:8080/tickets/"
+					class="btn btn-primary btn-sm mb-2">Tickets</a></li>
+				<li><a href="http://localhost:8080/tickets/new"
+					class="btn btn-primary btn-sm mb-2"> New Ticket </a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="container">
+
+		<h3 class="create-new-ticket">Create New Ticket</h3>
+		<hr>
+
+		<form action="#" th:action="@{/tickets/save}" th:object="${ticket}"
+			method="POST">
+
+			<label>Ticket Title</label> <input type="text"
+				th:field="*{ticketTitle}" class="form-control mb-4 col-20"
+				placeholder="Enter Ticket Title"> <label>Ticket
+				Short Description</label>
+			<textarea th:field="*{ticketShortDesc}"
+				class="form-control mb-4 col-15"
+				placeholder="Enter Ticket Description" style="resize: both;"></textarea>
+				<label> Content </label>
+			<button type="submit" class="btn btn-info col-2">Save</button>
+
+		</form>
+
+		<hr>
+
+	</div>
 
 </body>
 </html>

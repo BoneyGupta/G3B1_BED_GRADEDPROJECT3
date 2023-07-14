@@ -21,12 +21,14 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name = "id")
-	int id;
+	private int id;
 	@Column(name = "tkt_title")
-	String ticketTitle;
+	private String ticketTitle;
 	@Column(name = "tkt_short_desc")
-	String ticketShortDesc;
+	private String ticketShortDesc;
 	@Column(name = "tkt_created_on")
-	String ticketCreatedOn;
+	private String ticketCreatedOn;
+	@Column(name="tkt_content")
+	private String ticketContent;
 
 }

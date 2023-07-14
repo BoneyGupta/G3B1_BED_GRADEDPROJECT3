@@ -6,14 +6,14 @@ import gl.lab5.springproject.model.Ticket;
 
 public interface MyService {
 
-	List<Ticket> getAllTickets();
+	public List<Ticket> getAllTickets(String query);
 
-	void saveTicket(Ticket tkt);
+	public void saveTicket(Ticket tkt);
 
-	int deleteTicket(int tkt_num);
+	public int deleteTicket(int tkt_num);
 
-	Ticket findByNum(int tkt_num);
+	public Ticket findByNum(int tkt_num);
 
-	List<Ticket> searchTickets(String query);
+//	List<Ticket> searchTickets(String query);
 
 }

@@ -17,7 +17,17 @@ public class MyServiceImpl implements MyService {
 	MyRepository repo;
 
 	@Override
-	public List<Ticket> getAllTickets() {
+	public List<Ticket> getAllTickets(String query) {
+		if(query!=null) {			
+			List<Ticket> ls = repo.findAll();
+			List<Ticket> temp = new ArrayList<>();
+			for (Ticket tktemp : ls) {
+				if (tktemp.getTicketTitle().toLowerCase().contains(query)
+						|| tktemp.getTicketShortDesc().toLowerCase().contains(query))
+					temp.add(tktemp);
+			}
+			return temp;
+		}			
 		return repo.findAll();
 	}
 
@@ -41,15 +51,15 @@ public class MyServiceImpl implements MyService {
 			throw new RuntimeException("Ticket does not exist");
 	}
 
-	@Override
-	public List<Ticket> searchTickets(String query) {
-		List<Ticket> ls = repo.findAll();
-		List<Ticket> temp = new ArrayList<>();
-		for (Ticket tktemp : ls) {
-			if (tktemp.getTicketTitle().toLowerCase().contains(query)
-					|| tktemp.getTicketShortDesc().toLowerCase().contains(query))
-				temp.add(tktemp);
-		}
-		return temp;
-	}
+//	@Override
+//	public List<Ticket> searchTickets(String query) {
+//		List<Ticket> ls = repo.findAll();
+//		List<Ticket> temp = new ArrayList<>();
+//		for (Ticket tktemp : ls) {
+//			if (tktemp.getTicketTitle().toLowerCase().contains(query)
+//					|| tktemp.getTicketShortDesc().toLowerCase().contains(query))
+//				temp.add(tktemp);
+//		}
+//		return temp;
+//	}
 }
