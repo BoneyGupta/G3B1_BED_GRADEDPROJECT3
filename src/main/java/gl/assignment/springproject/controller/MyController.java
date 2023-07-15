@@ -77,7 +77,7 @@ public class MyController {
 		LocalDate currentDate = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		tkt.setTicketCreatedOn(currentDate.format(formatter));
-		tkt.setTicketContent(tkt.getTicketContent().replaceAll("<p>|</p>|<br>", ""));
+		tkt.setTicketContent(tkt.getTicketContent().replaceAll("<p>|</p>|<br>|<b>|</b>", ""));
 		svc.saveTicket(tkt);
 		return "redirect:/tickets/";
 	}

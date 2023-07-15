@@ -14,6 +14,4 @@ public interface MyService {
 
 	public Ticket findByNum(int tkt_num);
 
-//	List<Ticket> searchTickets(String query);
-
 }

@@ -51,16 +51,4 @@ public class MyServiceImpl implements MyService {
 		else
 			throw new RuntimeException("Ticket does not exist");
 	}
-
-//	@Override
-//	public List<Ticket> searchTickets(String query) {
-//		List<Ticket> ls = repo.findAll();
-//		List<Ticket> temp = new ArrayList<>();
-//		for (Ticket tktemp : ls) {
-//			if (tktemp.getTicketTitle().toLowerCase().contains(query)
-//					|| tktemp.getTicketShortDesc().toLowerCase().contains(query))
-//				temp.add(tktemp);
-//		}
-//		return temp;
-//	}
 }
