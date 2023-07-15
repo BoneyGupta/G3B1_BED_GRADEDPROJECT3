@@ -9,7 +9,7 @@
 		<version>2.7.13</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>gl.lab5</groupId>
+	<groupId>gl.assignment</groupId>
 	<artifactId>SpringProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>EmployeeManagementSystem</name>

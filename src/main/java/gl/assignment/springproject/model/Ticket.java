@@ -1,4 +1,4 @@
-package gl.lab5.springproject.model;
+package gl.assignment.springproject.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,8 +1,8 @@
-package gl.lab5.springproject.service;
+package gl.assignment.springproject.service;
 
 import java.util.List;
 
-import gl.lab5.springproject.model.Ticket;
+import gl.assignment.springproject.model.Ticket;
 
 public interface MyService {
 
