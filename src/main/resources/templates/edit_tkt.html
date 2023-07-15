@@ -23,7 +23,7 @@
 <script>
 	$(document).ready(
 			function() {
-				$('#comment').summernote(
+				$('#ticketContent').summernote(
 						{
 							height : 50, // set the height of the editor
 							toolbar : [ // customize the toolbar buttons
@@ -175,7 +175,7 @@ h3 {
 						<div class="form-group">
 							<label for="ticketContent">Content</label>
 							<textarea th:field="*{ticketContent}" class="form-control"
-								rows="2" id="comment" placeholder="Enter Content"></textarea>
+								rows="2" id="ticketContent" placeholder="Enter Content"></textarea>
 						</div>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>
